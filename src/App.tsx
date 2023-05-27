@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./app.module.css";
 
 interface Item {
   name: string;
@@ -38,12 +39,16 @@ function App() {
   }, [list]);
 
   return (
-    <div>
-      <ul>
+    <div className={styles.root}>
+      <ul className={styles.list}>
         {list.map((item, index) => (
-          <li key={item.name} onDoubleClick={() => handleItemClick(index)}>
+          <li
+            key={item.name}
+            onDoubleClick={() => handleItemClick(index)}
+            className={styles.item}
+          >
             <h2>{item.name}</h2>
-            <h3>{item.date}</h3>
+            <h4>{item.date}</h4>
           </li>
         ))}
       </ul>

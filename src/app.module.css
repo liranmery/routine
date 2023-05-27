@@ -1,0 +1,22 @@
+.root {
+  width: 100vh;
+  padding: 10rem 20rem;
+  background-color: #f0f0f0f0;
+}
+
+.list {
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.item {
+  padding: 2rem;
+  list-style: none;
+}
+
+.item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
