@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [list, setList] = useState<string[]>([]);
+  const [list, setList] = useState<string[]>(() =>
+    JSON.parse(localStorage.getItem("list") ?? "[]")
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +24,10 @@ function App() {
       ...list.slice(index, index + 1),
     ]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   return (
     <div>
