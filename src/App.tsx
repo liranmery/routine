@@ -15,11 +15,21 @@ function App() {
     setList([...list, name]);
   };
 
+  const handleItemClick = (index: number) => {
+    setList([
+      ...list.slice(0, index),
+      ...list.slice(index + 1),
+      ...list.slice(index, index + 1),
+    ]);
+  };
+
   return (
     <div>
       <ul>
-        {list.map((item) => (
-          <li key={item}>{item}</li>
+        {list.map((item, index) => (
+          <li key={item} onDoubleClick={() => handleItemClick(index)}>
+            {item}
+          </li>
         ))}
       </ul>
       <form onSubmit={handleSubmit}>
