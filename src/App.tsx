@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import styles from "./app.module.css";
+import styles from "./App.module.css";
+import { DaysIndicator } from "./DaysIndicator";
 
 interface Item {
   name: string;
@@ -47,8 +48,11 @@ function App() {
             onDoubleClick={() => handleItemClick(index)}
             className={styles.item}
           >
-            <h2>{item.name}</h2>
-            <h4>{item.date}</h4>
+            <div>
+              <h2>{item.name}</h2>
+              <h4>{item.date}</h4>
+            </div>
+            <DaysIndicator date={item.date} max={8} />
           </li>
         ))}
       </ul>
