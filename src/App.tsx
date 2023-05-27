@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 
+interface Item {
+  name: string;
+  date: string;
+}
+
 function App() {
-  const [list, setList] = useState<string[]>(() =>
+  const [list, setList] = useState<Item[]>(() =>
     JSON.parse(localStorage.getItem("list") ?? "[]")
   );
 
@@ -14,14 +19,17 @@ function App() {
 
     const name = target.name.value;
 
-    setList([...list, name]);
+    setList([...list, { name, date: new Date().toLocaleString() }]);
   };
 
   const handleItemClick = (index: number) => {
     setList([
       ...list.slice(0, index),
       ...list.slice(index + 1),
-      ...list.slice(index, index + 1),
+      {
+        ...list[index],
+        date: new Date().toLocaleString(),
+      },
     ]);
   };
 
@@ -33,8 +41,9 @@ function App() {
     <div>
       <ul>
         {list.map((item, index) => (
-          <li key={item} onDoubleClick={() => handleItemClick(index)}>
-            {item}
+          <li key={item.name} onDoubleClick={() => handleItemClick(index)}>
+            <h2>{item.name}</h2>
+            <h3>{item.date}</h3>
           </li>
         ))}
       </ul>
