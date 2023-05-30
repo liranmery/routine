@@ -1,4 +1,4 @@
-import { differenceInDays } from "date-fns";
+import { differenceInCalendarDays } from "date-fns";
 import styles from "./DaysIndicator.module.css";
 import { DOTS_SIZE } from "./consts";
 
@@ -8,7 +8,7 @@ interface DaysIndicatorProps {
 }
 
 export function DaysIndicator({ date, max }: DaysIndicatorProps) {
-  const daysDiff = differenceInDays(new Date(), new Date(date));
+  const daysDiff = differenceInCalendarDays(new Date(), new Date(date));
 
   return (
     <div className={styles.root}>
