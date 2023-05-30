@@ -5,6 +5,7 @@ import { DaysIndicator } from "./DaysIndicator";
 interface Item {
   name: string;
   date: string;
+  maxDays: number;
 }
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     };
 
     const name = target.name.value;
-    const maxDays = target.maxDays.value;
+    const maxDays = +target.maxDays.value;
 
     if (!name || !maxDays) {
       setErrors({
@@ -37,7 +38,7 @@ function App() {
       return;
     }
 
-    setList([...list, { name, date: new Date().toLocaleString() }]);
+    setList([...list, { name, date: new Date().toLocaleString(), maxDays }]);
   };
 
   const handleItemClick = (index: number) => {
@@ -84,7 +85,7 @@ function App() {
               <h2>{item.name}</h2>
               <h4>{item.date}</h4>
             </div>
-            <DaysIndicator date={item.date} max={8} />
+            <DaysIndicator date={item.date} max={item.maxDays} />
           </li>
         ))}
       </ul>
