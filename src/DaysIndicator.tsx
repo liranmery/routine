@@ -1,33 +1,25 @@
 import { differenceInCalendarDays } from "date-fns";
 import styles from "./DaysIndicator.module.css";
 import { DOTS_SIZE } from "./consts";
-import { useEffect, useState } from "react";
 
 interface DaysIndicatorProps {
   date: string;
-  max: number;
+  maxDays: number;
+  currentDate: Date;
 }
 
-export function DaysIndicator({ date, max }: DaysIndicatorProps) {
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  const syncDate = () => {
-    const interval = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  };
-
-  useEffect(syncDate, []);
-
+export function DaysIndicator({
+  date,
+  maxDays,
+  currentDate,
+}: DaysIndicatorProps) {
   const daysDiff = differenceInCalendarDays(currentDate, new Date(date));
 
   return (
     <div className={styles.root}>
       {[...Array(DOTS_SIZE)].map((_, index) => {
         const dotRatio = (index + 1) * (1 / DOTS_SIZE);
-        const daysRatio = daysDiff / max;
+        const daysRatio = daysDiff / maxDays;
         const isDotActive = dotRatio <= daysRatio;
 
         return (

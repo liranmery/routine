@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { differenceInCalendarDays } from "date-fns";
 import styles from "./App.module.css";
 import { DaysIndicator } from "./DaysIndicator";
 
@@ -13,6 +14,7 @@ function App() {
     JSON.parse(localStorage.getItem("list") ?? "[]")
   );
   const [errors, setErrors] = useState({ name: "", maxDays: "" });
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,9 +54,38 @@ function App() {
     ]);
   };
 
-  useEffect(() => {
+  const compareDaysRatio = (itemA: Item, itemB: Item) => {
+    const { date: dateA, maxDays: maxDaysA } = itemA;
+    const { date: dateB, maxDays: maxDaysB } = itemB;
+
+    const daysRatioA =
+      differenceInCalendarDays(currentDate, new Date(dateA)) / maxDaysA;
+    const daysRatioB =
+      differenceInCalendarDays(currentDate, new Date(dateB)) / maxDaysB;
+
+    if (daysRatioA < daysRatioB) {
+      return 1;
+    } else if (daysRatioA > daysRatioB) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
+  const syncDate = () => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  };
+
+  const setLocalStorage = () => {
     localStorage.setItem("list", JSON.stringify(list));
-  }, [list]);
+  };
+
+  useEffect(syncDate, []);
+  useEffect(setLocalStorage, [list]);
 
   return (
     <div className={styles.root}>
@@ -75,7 +106,7 @@ function App() {
         <button className={styles.button}>Add</button>
       </form>
       <ul className={styles.list}>
-        {list.map((item, index) => (
+        {[...list].sort(compareDaysRatio).map((item, index) => (
           <li
             key={item.name}
             onDoubleClick={() => handleItemClick(index)}
@@ -85,7 +116,11 @@ function App() {
               <h1 className={styles.header}>{item.name}</h1>
               <h2 className={styles.lightColor}>{item.date}</h2>
             </div>
-            <DaysIndicator date={item.date} max={item.maxDays} />
+            <DaysIndicator
+              date={item.date}
+              maxDays={item.maxDays}
+              currentDate={currentDate}
+            />
           </li>
         ))}
       </ul>
