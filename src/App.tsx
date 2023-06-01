@@ -82,8 +82,8 @@ function App() {
             className={styles.item}
           >
             <div>
-              <h2>{item.name}</h2>
-              <h4>{item.date}</h4>
+              <h1 className={styles.header}>{item.name}</h1>
+              <h2 className={styles.lightColor}>{item.date}</h2>
             </div>
             <DaysIndicator date={item.date} max={item.maxDays} />
           </li>

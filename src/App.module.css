@@ -1,7 +1,11 @@
 .root {
-  width: 100vh;
+  min-height: 100vh;
   padding: 2rem 20rem;
   background-color: #f0f0f0f0;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .list {
@@ -38,14 +42,28 @@
   border: 1px solid #ccc;
   color: #333333;
   margin-left: 1rem;
+  padding: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #ffffff;
 }
 
 .form {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 1rem;
 }
 
 .fieldset {
   flex: 1;
+}
+
+.lightColor {
+  color: #888888;
+}
+
+.header {
+  font-size: 1.3rem;
+  font-weight: 600;
 }
