@@ -43,7 +43,9 @@ function App() {
     setList([...list, { name, date: new Date().toLocaleString(), maxDays }]);
   };
 
-  const handleItemClick = (index: number) => {
+  const handleItemClick = (name: string) => {
+    const index = list.findIndex((item) => item.name === name);
+
     setList([
       ...list.slice(0, index),
       ...list.slice(index + 1),
@@ -106,10 +108,10 @@ function App() {
         <button className={styles.button}>Add</button>
       </form>
       <ul className={styles.list}>
-        {[...list].sort(compareDaysRatio).map((item, index) => (
+        {[...list].sort(compareDaysRatio).map((item) => (
           <li
             key={item.name}
-            onDoubleClick={() => handleItemClick(index)}
+            onDoubleClick={() => handleItemClick(item.name)}
             className={styles.item}
           >
             <div>
