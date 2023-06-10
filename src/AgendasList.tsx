@@ -2,18 +2,16 @@ import { differenceInCalendarDays } from "date-fns";
 import styles from "./App.module.css";
 import { DaysIndicator } from "./DaysIndicator";
 import { Item } from "./types";
+import { useCurrentDate } from "./hooks/useCurrentDate";
 
 interface AgendasListProps {
   list: Item[];
-  currentDate: Date;
-  onItemClick: (name: string) => void;
+  onListItemClick: (name: string) => void;
 }
 
-export function AgendasList({
-  list,
-  currentDate,
-  onItemClick,
-}: AgendasListProps) {
+export function AgendasList({ list, onListItemClick }: AgendasListProps) {
+  const { currentDate } = useCurrentDate();
+
   const compareDaysRatio = (itemA: Item, itemB: Item) => {
     const { date: dateA, maxDays: maxDaysA } = itemA;
     const { date: dateB, maxDays: maxDaysB } = itemB;
@@ -37,7 +35,7 @@ export function AgendasList({
       {[...list].sort(compareDaysRatio).map((item) => (
         <li
           key={item.name}
-          onDoubleClick={() => onItemClick(item.name)}
+          onDoubleClick={() => onListItemClick(item.name)}
           className={styles.item}
         >
           <div>
