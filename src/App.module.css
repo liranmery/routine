@@ -22,6 +22,20 @@
   justify-content: space-between;
   padding: 1rem 2rem;
   list-style: none;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.item:hover {
+  background-color: #fafafa;
+}
+
+.item:first-child {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.item:last-child {
+  border-radius: 0 0 1rem 1rem;
 }
 
 .item:not(:last-child) {
