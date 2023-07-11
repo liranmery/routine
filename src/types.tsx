@@ -1,5 +1,5 @@
 export interface Item {
   name: string;
-  date: string;
+  date: Date;
   maxDays: number;
 }

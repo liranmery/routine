@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { format } from "date-fns";
 import { Item } from "../types";
 
 export function useList() {
@@ -13,7 +12,7 @@ export function useList() {
       {
         name: item.name,
         maxDays: item.maxDays,
-        date: format(new Date(), "d/L/yy HH:mm"),
+        date: new Date(),
       },
     ]);
   };
@@ -26,7 +25,7 @@ export function useList() {
       ...list.slice(index + 1),
       {
         ...list[index],
-        date: format(new Date(), "d/L/yy HH:mm"),
+        date: new Date(),
       },
     ]);
   };

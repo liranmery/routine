@@ -3,7 +3,7 @@ import styles from "./DaysIndicator.module.css";
 import { DOTS_SIZE } from "./consts";
 
 interface DaysIndicatorProps {
-  date: string;
+  date: Date;
   maxDays: number;
   currentDate: Date;
 }

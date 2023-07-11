@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import { DaysIndicator } from "./DaysIndicator";
 import { Item } from "./types";
 import { useCurrentDate } from "./hooks/useCurrentDate";
+import { format } from "date-fns";
 
 interface AgendasListProps {
   list: Item[];
@@ -40,7 +41,9 @@ export function AgendasList({ list, onListItemClick }: AgendasListProps) {
         >
           <div>
             <h1 className={styles.header}>{item.name}</h1>
-            <h2 className={styles.lightColor}>{item.date}</h2>
+            <h2 className={styles.lightColor}>
+              {format(new Date(item.date), "d/L/yy HH:mm")}
+            </h2>
           </div>
           <DaysIndicator
             date={item.date}
