@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Item } from "../types";
+import { Item } from "../types/Item.ts";
 
 export function useList() {
   const [list, setList] = useState<Item[]>(() =>

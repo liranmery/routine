@@ -1,13 +1,3 @@
-.root {
-  min-height: 100vh;
-  padding: 2rem 20rem;
-  background-color: #f0f0f0f0;
-  font-family: "Roboto", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
 .list {
   padding: 0;
   border: 1px solid #ccc;
@@ -40,37 +30,6 @@
 
 .item:not(:last-child) {
   border-bottom: 1px solid #ccc;
-}
-
-.error {
-  color: #ff0000;
-  margin-left: 1rem;
-}
-
-.label {
-  font-weight: bold;
-  margin: 0 1rem;
-}
-
-.button {
-  border: 1px solid #ccc;
-  color: #333333;
-  margin-left: 1rem;
-  padding: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #ffffff;
-}
-
-.form {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 1rem;
-}
-
-.fieldset {
-  flex: 1;
 }
 
 .lightColor {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Item } from "../types";
+import { Item } from "../types/Item.ts";
 
 export function useErrors() {
   const [errors, setErrors] = useState({ name: "", maxDays: "" });

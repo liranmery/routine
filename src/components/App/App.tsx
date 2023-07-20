@@ -1,7 +1,7 @@
 import styles from "./App.module.css";
-import { NewAgendaForm } from "./NewAgendaForm";
-import { AgendasList } from "./AgendasList";
-import { useList } from "./hooks/useList";
+import { NewAgendaForm } from "../NewAgendaForm/NewAgendaForm.tsx";
+import { AgendasList } from "../AgendasList/AgendasList.tsx";
+import { useList } from "../../hooks/useList.ts";
 
 function App() {
   const { updateListItem, list, addListItem } = useList();
