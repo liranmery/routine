@@ -12,6 +12,7 @@ export function DaysIndicator({
     <div className={styles.root}>
       {[...Array(DOTS_SIZE)].map((_, index) => (
         <span
+          data-testid="dot"
           key={index}
           className={`${styles.dot} ${
             isDotActive(maxDays, index + 1, date, currentDate) ? styles.hot : ""
