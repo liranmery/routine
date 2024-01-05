@@ -20,7 +20,7 @@ test("display four dots", () => {
 test("turn on only first dot", () => {
   const maxDays = faker.number.int({ min: 10, max: 100 });
   const date = faker.date.anytime();
-  const quarterMaxDays = Math.ceil(maxDays / DOTS_SIZE);
+  const quarterMaxDays = Math.ceil(maxDays / DOTS_SIZE) + maxDays;
 
   render(
     <DaysIndicator
